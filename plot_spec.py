@@ -7,7 +7,7 @@ def file_prop(file_path):                 #input - file path | return - Key valu
     data = read_file(file_path)
     return data.keys()
 
-def plot_spec(file_path,spec_name,multiplier=1,wn=True):
+def plot_spec(file_path,multiplier=1,wn=True):
     data = read_file(file_path)
     if wn:                                #if input is True(default) - covert unit to nm | if input - False - unit stays cm^-1 
         x_ = 'Wavenumber (cm^(-1))'
@@ -30,11 +30,15 @@ def plot_spec(file_path,spec_name,multiplier=1,wn=True):
             y.append(a)
         y_ = 'Transmittance'
     
-    plt.plot(x,y)
+    a = file_path.split('/')
+    name = a[len(a)-2]
+    plt.plot(x,y,label=name)
     plt.xlabel(x_)
     plt.ylabel(y_)
-    plt.title(spec_name)
+    plt.legend()
     plt.show()
 
-spec = r'C:\Users\visha\OneDrive\Desktop\code\spectra\reflect_ref_day2_15_R.0'
+'''
+spec = r'NIR-comp-DIFF_REFLECT/PUG-18-5-b_Diff_ref_VTX_NIR_202406041202.0'
 plot_spec(spec,'test')
+'''
